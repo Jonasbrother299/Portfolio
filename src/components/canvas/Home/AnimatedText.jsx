@@ -114,7 +114,7 @@ export default function AnimatedText() {
         fontSize={0.08}
         scale={10}
         color="white"
-        font='./public/font/Sarabun-Medium.ttf'
+        font='./font/Sarabun-Medium.ttf'
         material-transparent={true}
       >
         Crafting Immersive {'\n'}3D Worlds
