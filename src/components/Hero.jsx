@@ -11,7 +11,6 @@ import {
 import transition from "../transition";
 import state from "../store";
 import Cards from "./Cards";
-import { HeroPhoto } from "../assets";
 import Home from './Home';
 
 // import GradientBackground from "./canvas/Background/GradientBackground";
