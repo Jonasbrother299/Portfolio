@@ -1,0 +1,45 @@
+@use "../01_abstracts/" as *;
+
+@font-face {
+  font-family: "Playfair";
+  src: url("../../assets/PlayfairDisplay-Regular.ttf") format("truetype");
+}
+
+*,
+*::before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none; 
+}
+
+html,
+body,
+#root {
+  box-sizing: border-box;
+  font-size: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  overscroll-behavior: none;
+   cursor: url("../Public/Cursor.svg") 16 16, auto;
+}
+::-webkit-scrollbar {
+  width: 0;
+  display: none;
+  scrollbar-width: none;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+

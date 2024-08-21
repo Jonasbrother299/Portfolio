@@ -1,0 +1,41 @@
+@use "../01_abstracts/colors" as *;
+
+.button {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: url("../Public/Cursor.svg") 16 16, auto;
+  width: 40%;
+  padding: 18px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-radius: 30px;
+  color: $text_color--white;
+  margin: 1em 0;
+  border: 2px solid $grey;
+  transition: 0.25s;
+  bottom: 40px;
+}
+
+@media screen and (max-width: 665px) {
+  .button {
+    font-size: 16px;
+    width: 50%;
+    padding: 18px 0;
+  }
+}
+
+.button:hover {
+  border: 2px solid $accent;
+}
+.primary {
+  border: 2px solid darken($teal, 5%);
+}
+
+.primary:hover {
+  color: $white;
+  border: 2px solid $accent;
+  background: darken($accent, 35%);
+}

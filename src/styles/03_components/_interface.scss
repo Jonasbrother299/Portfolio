@@ -1,0 +1,102 @@
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.FormLabel {
+    color: beige;
+    font-size: 24px;
+}
+.Configurator__Box {
+    position: absolute;
+    z-index: 11;
+    top: 150px;
+    left: 0;
+    transition: 0.5s;
+}
+.Configurator__BoxClosed {
+    position: absolute;
+    z-index: 11;
+    top: 150px;
+    left: -150px;
+       transition: 0.5s;
+}
+.Configurator__button {
+    position: absolute;
+    top: 500px;
+    z-index: 12;
+    left: 290px;
+    background: darken(teal, 10%);
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+.Configurator__buttonClosed{
+    position: absolute;
+    top: 500px;
+    z-index: 12;
+    left: 0px;
+    background: darken(teal, 10%);
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+.Configurator__buttonClosed::after{
+      content: "";
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    background: beige;
+    width: 4px;
+    height: 20px;
+    border: none;
+    outline: none;
+    transform: rotate(-135deg);
+    
+}
+.Configurator__buttonClosed::before{
+      content: "";
+    position: absolute;
+    top: 8px;
+    left: 25px;
+    background: beige;
+    width: 4px;
+    height: 20px;
+    border: none;
+    outline: none;
+    transform: rotate(135deg);
+    
+}
+.Configurator__button::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    background: beige;
+    width: 4px;
+    height: 20px;
+    border: none;
+    outline: none;
+    transform: rotate(45deg);
+    
+}
+.Configurator__button::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: beige;
+    width: 4px;
+    height: 20px;
+    border: none;
+    outline: none;
+    transform: rotate(-45deg);
+}

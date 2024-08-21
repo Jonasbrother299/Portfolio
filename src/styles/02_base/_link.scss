@@ -1,0 +1,16 @@
+@use "../01_abstracts/" as *;
+
+a {
+  color: $white;
+  text-decoration: none;
+  outline: 0;
+  @include transition15;
+  cursor: url("../Public/Cursor.svg") 16 16, auto;
+  transition: color 0.15s ease;
+
+  &:hover,
+  &:focus {
+     cursor: url("../Public/Cursor2.svg") 16 16, auto;
+    color: $accent;
+  }
+}

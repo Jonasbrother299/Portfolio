@@ -1,0 +1,27 @@
+.visible {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: -2em;
+  margin: 2.5em;
+  z-index: 11;
+  opacity: 1;
+  img {
+    width: 34px;
+    height: 34px;
+    transition: 0.5s;
+    cursor: url("../Public/Cursor.svg") 15 15, auto;
+  }
+}
+.hidden {
+  opacity: 0;
+  transition: 2s;
+}
+@media screen and (max-width: 965px) {
+  .visible {
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

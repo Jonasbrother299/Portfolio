@@ -1,0 +1,20 @@
+@use "sass:map";
+@use "../01_abstracts/breakpoints" as *;
+@use "../01_abstracts/colors" as *;
+
+@mixin mq($key) {
+  $size: map.get($breakpoints, $key);
+
+  @media (max-width: $size) {
+    @content;
+  }
+}
+
+@mixin pseudoElementsBase {
+  content: "";
+  position: absolute;
+}
+
+@mixin transition15 {
+  transition: (all 0.15s ease-out 0s);
+}

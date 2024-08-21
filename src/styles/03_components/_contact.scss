@@ -1,0 +1,287 @@
+@use "../01_abstracts/colors" as *;
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.section__form {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  transition: 0.5s;
+}
+.container__formular {
+  position: relative;
+  width: 600px;
+  min-height: 200px;
+  min-width: 200px;
+  background-color: rgba(125, 125, 125, 0.1);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 25px 45px $box-shadow;
+  border: 1px solid $border-color;
+}
+h2 {
+  position: relative;
+  letter-spacing: 2px;
+  color: $text_color--beige;
+  margin-bottom: 40px;
+}
+h2:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 80px;
+  height: 4px;
+  background: $white;
+}
+.form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0 40px;
+  transition: 0.25s;
+}
+.indicator {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  margin: 17.5px;
+  width: 15px;
+  height: 15px;
+  background: #555;
+  border-radius: 50%;
+}
+.form .valid .indicator {
+  background: $green;
+}
+.form .invalid .indicator {
+  background: $red;
+}
+
+.inputbox {
+  position: relative;
+  width: 100%;
+  margin-top: 30px;
+}
+.inputbox input[type="submit"] {
+  max-width: 100px;
+  font-weight: 700;
+}
+
+.inputbox input:hover {
+  border: 2px solid $beige;
+  transition: 0.8s;
+}
+.inputbox input:valid,
+.inputbox input:focus {
+  border: 2px solid rgba(81, 81, 81, 0.683);
+  transition: 0.8s;
+}
+
+.inputbox input {
+  cursor: url("../Public/Cursor.svg") 0 0, auto;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  border: 2px solid transparent;
+  letter-spacing: 1px;
+  color: $text_color--white;
+}
+.inputbox textarea:hover {
+  border: 2px solid $beige;
+  transition: 0.25s;
+}
+.inputbox textarea:valid,
+.inputbox textarea:focus {
+  border: none;
+  transition: 0.25s;
+}
+.inputbox textarea::placeholder {
+  color: $text_color--white;
+}
+.inputbox textarea {
+  cursor: url("../Public/Cursor.svg") 0 0, auto;
+  font-family: inherit;
+  font-size: inherit;
+  resize: none;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  outline: none;
+  height: 200px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  font-size: 1.3em;
+  box-shadow: 0 25px 45px rgba(78, 77, 77, 0.2);
+  letter-spacing: 1px;
+  color: $text_color--aliceblue;
+}
+.inputbox__placeholder {
+  letter-spacing: 4px;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  padding: 15px 20px;
+  font-size: 1.1em;
+  color: rgba(255, 255, 255, 0.649);
+  transition: 0.5s;
+}
+.inputbox input:valid ~ span,
+.inputbox input:focus ~ span,
+.inputbox textarea:valid ~ span,
+.inputbox textarea:focus ~ span {
+  color: $beige;
+  letter-spacing: 2px;
+  transform: translateX(24px) translateY(-10px);
+  padding: 0 10px;
+  font-size: 1em;
+}
+
+.Container {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: $Background;
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px $box-shadow2;
+}
+.Container__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: $beige;
+  margin: 4em;
+  transition: 0.25s;
+}
+
+.Container__text h3 {
+  letter-spacing: 5px;
+  font-size: 38px;
+  transition: 0.5s;
+}
+
+.ButtonWrapper {
+  display: flex;
+  gap: 30px;
+  justify-content: space-evenly;
+}
+.color {
+  position: absolute;
+  filter: blur(150px);
+  z-index: 0;
+}
+.color:nth-child(3) {
+  top: -150px;
+  left: -70px;
+  width: 50%;
+  height: 50%;
+  background-color: $primary;
+  border-radius: 70% 31% 53% 22% / 60% 40% 60% 40%;
+}
+.color:nth-child(2) {
+  bottom: 0px;
+  left: 600px;
+  width: 50%;
+  height: 50%;
+  border-radius: 70% 31% 53% 22% / 60% 40% 60% 40%;
+  background-color: $primary;
+}
+.color:nth-child(4) {
+  top: 300px;
+  left: 600px;
+  width: 20%;
+  height: 20%;
+  border-radius: 70% 31% 53% 22% / 60% 40% 60% 40%;
+  background-color: $teal;
+}
+
+@media screen and (max-width: 965px) {
+  .container__formular {
+    width: 575px;
+  }
+  .section__form {
+    height: 95vh;
+  }
+}
+@media screen and (max-width: 565px) {
+  .container__formular {
+    width: 375px;
+    transition: 0.25s;
+  }
+  .Container__text {
+    margin: 2em;
+  }
+  .Container__text h3 {
+    font-size: 28px;
+    letter-spacing: 5px;
+    transition: 0.5s;
+  }
+  h2 {
+    font-size: 32px;
+  }
+  button {
+    font-size: 18px;
+    margin: 0em 0;
+    transition: 0.5s;
+    padding: 12px 0;
+    width: 150px;
+    margin: 0.5em 0;
+  }
+  .form {
+    padding: 0 10px;
+  }
+  .indicator {
+    right: 20px;
+    margin: 17.5px 0px;
+  }
+  .section__form {
+    overflow: hidden;
+    width: 100%;
+    height: 93vh;
+    transition: 0.5s;
+  }
+  .container__formular {
+    background-color: rgba(125, 125, 125, 0);
+    box-shadow: 0 25px 45px rgba(255, 255, 255, 0);
+    border: 0px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .color:nth-child(3) {
+    top: -150px;
+    left: -30px;
+  }
+  .color:nth-child(2) {
+    bottom: 0px;
+    left: 100px;
+  }
+  .color:nth-child(4) {
+    top: 300px;
+    left: 200px;
+  }
+}
+
+@media screen and (max-width: 265px) {
+  .indicator {
+    right: 10px;
+    margin: 17.5px 0px;
+  }
+}
