@@ -1,11 +1,10 @@
 import { Suspense} from "react";
 import { Canvas, useFrame} from "@react-three/fiber";
 import { Preload } from "@react-three/drei/core/Preload";
-import { Environment } from "@react-three/drei/core/Environment";
 import { ScrollControls } from "@react-three/drei/web/ScrollControls";
 import { useScroll } from "@react-three/drei";
 import { getProject, val} from "@theatre/core"
-import {SheetProvider, PerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
+import { SheetProvider, PerspectiveCamera, useCurrentSheet} from "@theatre/r3f"
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { CineonToneMapping} from "three";
 
@@ -15,9 +14,15 @@ import AnimatedText from "./AnimatedText";
 import Room from "./Room/Room";
 import CameraControll from "./CameraControll"
 import EnvironmentLoader from "./EnvironmentLoader";
+import stateflyThrough from "../../../flythrough/stateflyThrough.json"
+import studio from "@theatre/studio"
+import extension from "@theatre/r3f/dist/extension"
+
+// studio.extend(extension)
+// studio.initialize()
 
 const CanvasHome = () => {
-    const sheet = getProject("fly through").sheet("Scene")
+    const sheet = getProject("fly through", { state: stateflyThrough }).sheet("Scene")
   
     return (
       <>
@@ -25,7 +30,7 @@ const CanvasHome = () => {
           dpr={[1, 1.5]}
           shadows
           gl={{
-            alpha: false,
+            alpha: true,
             tencil: true,
             depth: true,
             antialias: true,

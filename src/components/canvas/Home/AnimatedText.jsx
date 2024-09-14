@@ -156,22 +156,26 @@ export default function AnimatedText() {
 
       <Text
         ref={designerTitleRef}
-        fontSize={0.09} // Bigger font size for the title
+        fontSize={0.05} // Bigger font size for the title
         scale={10}
         color="white"
         material-transparent={true}
       >
-        3D Designer
+        About me
       </Text>
 
       <Text
         ref={designerDescRef}
-        fontSize={0.09}
+        fontSize={0.025}
         scale={10}
         color="white"
         material-transparent={true}
       >
-        I craft immersive 3D experiences {'\n'}that blend technology with creativity.
+        I’m Jonas Mayer, a passionate Frontend Developer{'\n'}and 3D Designer based in Böblingen. {'\n'}
+        With a strong focus on creating immersive digital experiences, {'\n'}
+        I blend creativity with technology to bring innovative ideas to life{'\n'}
+        I hold a degree in Computer Science{'\n'}
+        which has provided me with a solid foundation in {'\n'}web development, design principles and UX/UI Design.
       </Text>
     </e.group>
   );

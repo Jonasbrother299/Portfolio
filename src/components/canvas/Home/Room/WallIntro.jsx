@@ -38,10 +38,12 @@ export default function WallIntro(props) {
         castShadow
         receiveShadow
         geometry={nodes.Cylinder006.geometry}
-        material={materials['Material.025']}
+        // material={materials['Material.025']}
         position={[-0.131, 10.064, 21.316]}
         scale={0.958}
-      />
+      >
+        <meshStandardMaterial emissive="white" emissiveIntensity={3} toneMapped={false} />
+        </mesh>
       <mesh
         castShadow
         receiveShadow
@@ -62,7 +64,7 @@ export default function WallIntro(props) {
         castShadow
         receiveShadow
         geometry={nodes.room_entrance_1_bloom.geometry}
-        material={new MeshBasicMaterial({ color: 'black', transparent: true, opacity: 1 })}  // Changing to MeshBasicMaterial with transparency
+        material={new MeshBasicMaterial({ color: 'black', transparent: true, opacity: 1 })}
         position={[-0.298, 10.047, 20.79]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={[1.338, 1.737, 2.831]}

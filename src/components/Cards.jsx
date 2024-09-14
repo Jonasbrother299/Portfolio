@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-
 import { work } from "../utils";
-
-import { fadeIn, textVariant } from "../utils/motion";
+import { fadeIn } from "../utils/motion";
 
 function ServiceCard({ index, title, icon, description, button }) {
   return (
     <div className="card__wrapper">
       <h3 className="card__headline">{title}</h3>
-      {/* <img src={icon} alt={title} className="card__image" /> */}
       <p className="card__description">{description}</p>
-      <button className="button">{button}</button>
+      {/* <button className="button">{button}</button> */}
     </div>
   );
 }
@@ -38,21 +35,22 @@ const Cards = () => {
       };
     }
   }, []);
-  const cardsNumber = ["", "", "", "", "", ""];
 
   return (
     <>
       <div className="wrapper_cards">
         <div id="cards">
-          {work.map((work, index) => (
+          {work.map((workItem, index) => (
             <motion.div
-              key={work.title + index}
-              variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
+              key={workItem.title + index}
+              variants={fadeIn("right", "spring", 0.5 * index, 0.75)} // Pass direction, type, delay, duration
+              initial="hidden" // Specify the hidden state from the fadeIn variant
+              animate="show" // Specify the show state to animate in
             >
               <div className="card">
                 <div className="card-border"></div>
                 <div className="card-content">
-                  <ServiceCard key={work.title} index={index} {...work} />
+                  <ServiceCard key={workItem.title} index={index} {...workItem} />
                 </div>
               </div>
             </motion.div>
@@ -64,5 +62,3 @@ const Cards = () => {
 };
 
 export default Cards;
-
-

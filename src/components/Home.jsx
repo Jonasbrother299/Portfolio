@@ -1,5 +1,8 @@
 import transition from '../transition'
 import CanvasHome from './canvas/Home/CanvasHome';
+import OverlayProjects from './canvas/Home/Room/OverlayProjects';
+import state from '../store';
+import { AnimatePresence } from "framer-motion";
 
 function OverlayCanvas() {
 
@@ -49,6 +52,10 @@ const Home = () => {
 
   return (
       <>
+       <AnimatePresence> {/* Wrap the Overlay component */}
+        {state.clicked && <OverlayProjects/>} {/* Only show Overlay when clicked */}
+      </AnimatePresence>
+       
         <OverlayCanvas />
         <CanvasHome />
       </>

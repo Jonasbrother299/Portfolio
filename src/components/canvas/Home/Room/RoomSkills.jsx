@@ -1,11 +1,33 @@
-import { useGLTF } from '@react-three/drei'
+import { useEffect, useRef, useState} from "react"
+import { Text, useGLTF } from '@react-three/drei'
 import { editable as e } from '@theatre/r3f';
 import { useCurrentSheet } from '@theatre/r3f';
+import { MeshBasicMaterial } from "three"
+import { Html } from "@react-three/drei";
+import { RoundedBox } from '@react-three/drei'
 
 export default function RoomSkills(props) {
+  const [cssLogohovered, setCssLogoHovered] = useState(false);
+  const [sassLogohovered, setSassLogoHovered] = useState(false);
+  const [reactLogohovered, setReactLogoHovered] = useState(false);
+  const [htmlLogohovered, setHtmlLogoHovered] = useState(false);
+  const [threeLogohovered, setThreeLogoHovered] = useState(false);
+
   const { nodes, materials } = useGLTF('/RoomSkills.glb')
   const sheet = useCurrentSheet();
+  const exitRoomSkillsRef = useRef();
 
+  const exitRoomSkillsObj = sheet.object('ExitRoom Skills', {
+    opacity: 1,
+  });
+
+  useEffect(() => {
+    exitRoomSkillsObj.onValuesChange((props) => {
+      if (exitRoomSkillsRef.current) {
+        exitRoomSkillsRef.current.material.opacity = props.opacity;
+      }
+    });
+  }, [exitRoomSkillsRef]);
 
   return (
     <e.group  {...props} dispose={null} theatreKey='RoomSkills'>
@@ -19,10 +41,12 @@ export default function RoomSkills(props) {
         />
       </group>
       <mesh
+        ref={exitRoomSkillsRef}
         castShadow
         receiveShadow
         geometry={nodes.Cylinder003.geometry}
-        material={materials['Material.035']}
+        material={new MeshBasicMaterial({ color: 'black', transparent: true, opacity: 1 })}
+        // material={materials['Material.035']}
         position={[0.061, 14.296, -147.493]}
         rotation={[Math.PI / 2, 0, 0]}
         scale={3.514}
@@ -51,6 +75,72 @@ export default function RoomSkills(props) {
         material={materials['Material.034']}
         position={[3.713, 5.081, -144.021]}
       />
+      <mesh 
+        scale={1} 
+        position={[-21.5,10,-90]}  
+        onPointerOver={() => setCssLogoHovered(true)}
+        onPointerOut={() => setCssLogoHovered(false)}
+      >
+        <boxGeometry args={[4,6, 5]}></boxGeometry>
+        <meshBasicMaterial opacity={0} transparent={true} ></meshBasicMaterial>
+      </mesh>
+      {cssLogohovered && (
+        <group position={[-21.5,17,-90]}>
+          <mesh  position={[-3,2,-10]}>
+          <RoundedBox args={[10, 10, 0.5]} radius={0.5} smoothness={4}>
+            <meshBasicMaterial color="#222222" />
+          </RoundedBox>
+            <Text position={[-3.1,3.5,1]}>CSS</Text>
+            <Text fontSize={0.55} position={[-0.3,2,1]}> {"3+ Years of Experience with CSS"}</Text>
+            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
+              {"Proficient in Flexbox, Media Queries, "}
+            </Text>
+            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
+              {"Transitions, and Animations"}
+            </Text>
+
+            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
+          {"Skilled in BEM Methodology "}
+        </Text>
+        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
+          {"and Responsive Design "}
+        </Text>
+          </mesh>
+        </group>
+      )}
+        <mesh 
+        scale={1} 
+        position={[-7.5,14,-127]}  
+        onPointerOver={() => setReactLogoHovered(true)}
+        onPointerOut={() => setReactLogoHovered(false)}
+      >
+        <boxGeometry args={[6,7, 5]}></boxGeometry>
+        <meshBasicMaterial opacity={0} transparent={true} ></meshBasicMaterial>
+      </mesh>
+      {reactLogohovered && (
+        <group position={[-5,22,-123]}>
+          <mesh  position={[-3,2,-10]}>
+          <RoundedBox args={[10, 10, 0.5]} radius={0.5} smoothness={4}>
+            <meshBasicMaterial color="#222222" />
+          </RoundedBox>
+            <Text position={[-3.1,3.5,1]}>React</Text>
+            <Text fontSize={0.55} position={[-0.3,2,1]}> {"2 Years of Experience with React"}</Text>
+            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
+              {"Proficient in Flexbox, Media Queries, "}
+            </Text>
+            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
+              {"Transitions, and Animations"}
+            </Text>
+
+            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
+          {"Skilled in BEM Methodology "}
+        </Text>
+        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
+          {"and Responsive Design "}
+        </Text>
+          </mesh>
+        </group>
+      )}
       <e.mesh
         theatreKey='ReactLogo'
         castShadow
@@ -61,6 +151,39 @@ export default function RoomSkills(props) {
         rotation={[Math.PI / 2, 0, 0]}
         scale={8.121}
       />
+        <mesh 
+        scale={1} 
+        position={[14,10,-127]}  
+        onPointerOver={() => setThreeLogoHovered(true)}
+        onPointerOut={() => setThreeLogoHovered(false)}
+      >
+        <boxGeometry args={[6,7, 5]}></boxGeometry>
+        <meshBasicMaterial opacity={0} transparent={true} ></meshBasicMaterial>
+      </mesh>
+      {threeLogohovered && (
+        <group position={[19,16,-123]}>
+          <mesh  position={[-3,2,-10]}>
+          <RoundedBox args={[10, 10, 0.5]} radius={0.5} smoothness={4}>
+            <meshBasicMaterial color="#222222" />
+          </RoundedBox>
+            <Text position={[-3.1,3.5,1]}>Three.js</Text>
+            <Text fontSize={0.55} position={[-0.3,2,1]}> {"2 Years of Experience with React"}</Text>
+            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
+              {"Proficient in Flexbox, Media Queries, "}
+            </Text>
+            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
+              {"Transitions, and Animations"}
+            </Text>
+
+            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
+          {"Skilled in BEM Methodology "}
+        </Text>
+        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
+          {"and Responsive Design "}
+        </Text>
+          </mesh>
+        </group>
+      )}
       <e.mesh
         theatreKey='ThreejsLogo'
         castShadow
@@ -71,6 +194,39 @@ export default function RoomSkills(props) {
         rotation={[-Math.PI / 2, 0, -0.142]}
         scale={30.622}
       />
+         <mesh 
+        scale={1} 
+        position={[20,14,-84]}  
+        onPointerOver={() => setHtmlLogoHovered(true)}
+        onPointerOut={() => setHtmlLogoHovered(false)}
+      >
+        <boxGeometry args={[6,7, 3]}></boxGeometry>
+        <meshBasicMaterial opacity={0} transparent={true} ></meshBasicMaterial>
+      </mesh>
+      {htmlLogohovered && (
+        <group position={[17,12,-84]}>
+          <mesh  position={[-3,2,-10]}>
+          <RoundedBox args={[10, 10, 0.5]} radius={0.5} smoothness={4}>
+            <meshBasicMaterial color="#222222" />
+          </RoundedBox>
+            <Text position={[-3.1,3.5,1]}>HTML</Text>
+            <Text fontSize={0.55} position={[-0.3,2,1]}> {"2 Years of Experience with React"}</Text>
+            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
+              {"Proficient in Flexbox, Media Queries, "}
+            </Text>
+            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
+              {"Transitions, and Animations"}
+            </Text>
+
+            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
+          {"Skilled in BEM Methodology "}
+        </Text>
+        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
+          {"and Responsive Design "}
+        </Text>
+          </mesh>
+        </group>
+      )}
       <e.group position={[16.805, 11.057, -85.228]} rotation={[Math.PI / 2, 0, 0]} scale={112.793} theatreKey='HTMLLogo'>
         <mesh
           castShadow
@@ -85,6 +241,39 @@ export default function RoomSkills(props) {
           material={materials['Material.054']}
         />
       </e.group>
+      <mesh 
+        scale={1} 
+        position={[-11.4,9,-105]}  
+        onPointerOver={() => setSassLogoHovered(true)}
+        onPointerOut={() => setSassLogoHovered(false)}
+      >
+        <boxGeometry args={[7,7, 3]}></boxGeometry>
+        <meshBasicMaterial opacity={0} transparent={true} ></meshBasicMaterial>
+      </mesh>
+      {sassLogohovered && (
+        <group position={[-9.5,15,-100]}>
+          <mesh  position={[-3,2,-10]}>
+          <RoundedBox args={[10, 10, 0.5]} radius={0.5} smoothness={4}>
+            <meshBasicMaterial color="#222222" />
+          </RoundedBox>
+            <Text position={[-3.1,3.5,1]}>SASS</Text>
+            <Text fontSize={0.55} position={[-0.3,2,1]}> {"2 Years of Experience with React"}</Text>
+            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
+              {"Proficient in Flexbox, Media Queries, "}
+            </Text>
+            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
+              {"Transitions, and Animations"}
+            </Text>
+
+            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
+          {"Skilled in BEM Methodology "}
+        </Text>
+        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
+          {"and Responsive Design "}
+        </Text>
+          </mesh>
+        </group>
+      )}
       <e.group position={[-24.857, 7.263, -92.429]} rotation={[Math.PI / 2, 0, 0]} scale={287.716} theatreKey='CSSLogo'>
         <mesh
           castShadow

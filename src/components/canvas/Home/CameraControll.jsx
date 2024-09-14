@@ -36,7 +36,7 @@ export default function CameraControl() {
   
     // Update camera rotation and position
     useFrame(() => {
-      const sensitivity = 0.01;
+      const sensitivity = 0.02;
       const smoothFactor = 0.1; // Adjust for smoother or faster transition
   
       if (isScrolling) {
