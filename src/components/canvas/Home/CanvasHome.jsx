@@ -50,7 +50,7 @@ const CanvasHome = () => {
           }}
         >
 
-    <Suspense fallback={<Loader loading={loading} />}>
+        <Suspense fallback={<Loader loading={loading} />}>
             <Smoke/>
             <CameraControll/>
               <EnvironmentLoader/>
@@ -85,9 +85,7 @@ function Scene() {
           <EffectComposer>
             <Bloom intensity={0.1} luminanceThreshold={0.1} luminanceSmoothing={0.2} height={300}/>
           </EffectComposer>
-              <Suspense fallback={<Loader />}>
-           <Room />
-          </Suspense>
+              <Room />
           <Preload />
           <PerspectiveCamera
             theatreKey="Camera"
