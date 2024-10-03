@@ -23,7 +23,7 @@ studio.initialize()
 
 const CanvasHome = () => {
     const sheet = getProject("fly through", { 
-      // state: stateflyThrough 
+      state: stateflyThrough 
     }).sheet("Scene")
     const [loading, setLoading] = useState(true);
 
