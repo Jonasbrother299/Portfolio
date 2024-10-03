@@ -1,22 +1,36 @@
 // Loader.js
-import React, { useState, useEffect } from 'react';
-import { Html } from '@react-three/drei';
-import { useProgress } from '@react-three/drei';
+import React, { useState, useEffect, useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Html, useProgress } from '@react-three/drei';
+import  MovingBall from './canvas/MovingBall/MovingBall';
+import { Bloom } from '@react-three/postprocessing';
+import { EffectComposer } from '@react-three/postprocessing';
+import { KernelSize } from 'postprocessing';
+const messages = [
+  'Setting up shaders',
+  'Optimizing the scene',
+  'Loading textures',
+  'Preparing assets',
+  'Initializing environment',
+];
 
-const Loader = () => {
+const Loader = ({ loading }) => {
   const { progress } = useProgress();
-  const [showLoader, setShowLoader] = useState(true);
+  const [messageIndex, setMessageIndex] = useState(0);
 
+  // Cycle through messages one time
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLoader(false);
-    }, 500); // 0.5 seconds delay before hiding the loader
+    if (messageIndex < messages.length - 1) {
+      const messageTimer = setInterval(() => {
+        setMessageIndex((prevIndex) => prevIndex + 1);
+      }, 1500); // Change message every 1.5 seconds
 
-    return () => clearTimeout(timer); // Clean up the timer on component unmount
-  }, []);
+      return () => clearInterval(messageTimer); // Clean up the interval on unmount
+    }
+  }, [messageIndex]);
 
-  if (!showLoader) return null;
-  
+  if (!loading) return null; // Show loader only when loading
+
   return (
     <Html center>
       <div
@@ -31,17 +45,36 @@ const Loader = () => {
           color: '#f1f1f1', // Light text color
         }}
       >
-        {/* Large Spinner or Logo */}
-        <div
+        {/* Canvas with MovingBall component */}
+        <Canvas
           style={{
-            width: 200,
-            height: 200,
-            border: '10px solid #f1f1f1',
-            borderTop: '10px solid #3498db',
-            borderRadius: '50%',
-            animation: 'spin 2s linear infinite',
+            width: '100%',
+            height: '700px',
+            marginBottom: '20px', // Adds space between canvas and progress text
           }}
-        />
+        >
+          <EffectComposer>
+            <Bloom
+              intensity={1.5} // Higher intensity for more glow
+              luminanceThreshold={0.5} // Lower to capture more colors
+              luminanceSmoothing={0.1} // Adjust to control the smoothness
+              kernelSize={KernelSize.HUGE} // Change the kernel size to adjust bloom spread
+            />
+          </EffectComposer>
+          <MovingBall /> {/* Render your MovingBall component here */}
+        </Canvas>
+
+        {/* Dynamic text displaying messages */}
+        <p
+          style={{
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginTop: -250,
+          }}
+        >
+          {messages[messageIndex]}
+        </p>
+
         {/* Progress Text */}
         <p
           style={{
@@ -53,15 +86,6 @@ const Loader = () => {
           {progress.toFixed(2)}%
         </p>
       </div>
-      {/* Adding keyframes for the spinner */}
-      <style>
-        {`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}
-      </style>
     </Html>
   );
 };

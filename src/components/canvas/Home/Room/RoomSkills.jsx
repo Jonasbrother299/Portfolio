@@ -12,11 +12,18 @@ export default function RoomSkills(props) {
   const [reactLogohovered, setReactLogoHovered] = useState(false);
   const [htmlLogohovered, setHtmlLogoHovered] = useState(false);
   const [threeLogohovered, setThreeLogoHovered] = useState(false);
+  const [certificatehovered, setCertificateHovered] = useState(false);
 
   const { nodes, materials } = useGLTF('/RoomSkills.glb')
   const sheet = useCurrentSheet();
   const exitRoomSkillsRef = useRef();
 
+  const handleCertificateHover = () => setCertificateHovered(true);
+  const handleCertificateOut = () => setCertificateHovered(false);
+
+  const handleClick = () => {
+    window.open("https://threejs-journey.com/certificate/view/9512", "_blank");
+  };
   const exitRoomSkillsObj = sheet.object('ExitRoom Skills', {
     opacity: 1,
   });
@@ -125,18 +132,18 @@ export default function RoomSkills(props) {
           </RoundedBox>
             <Text position={[-3.1,3.5,1]}>React</Text>
             <Text fontSize={0.55} position={[-0.3,2,1]}> {"2 Years of Experience with React"}</Text>
-            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
-              {"Proficient in Flexbox, Media Queries, "}
+            <Text fontSize={0.55} position={[-0.5, 0.7, 1]} color="#cccccc">
+            {"State Management with Valtio"}
             </Text>
-            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
-              {"Transitions, and Animations"}
+            <Text fontSize={0.55} position={[-0.1, -0.2, 1]} color="#cccccc">
+            {"Proficient in React Hooks, and JSX"}
             </Text>
 
-            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
-          {"Skilled in BEM Methodology "}
+            <Text position={[-1.1, -1.4, 1]} fontSize={0.55} color="#cccccc">
+            {"Component-Based Design"}
         </Text>
-        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
-          {"and Responsive Design "}
+        <Text position={[-1.4, -2.3, 1]} fontSize={0.55} color="#cccccc">
+          {"and Reusable UI Design"}
         </Text>
           </mesh>
         </group>
@@ -153,11 +160,11 @@ export default function RoomSkills(props) {
       />
         <mesh 
         scale={1} 
-        position={[14,10,-127]}  
+        position={[14.5,14,-127]}  
         onPointerOver={() => setThreeLogoHovered(true)}
         onPointerOut={() => setThreeLogoHovered(false)}
       >
-        <boxGeometry args={[6,7, 5]}></boxGeometry>
+        <boxGeometry args={[7.5,17, 5]}></boxGeometry>
         <meshBasicMaterial opacity={0} transparent={true} ></meshBasicMaterial>
       </mesh>
       {threeLogohovered && (
@@ -167,19 +174,25 @@ export default function RoomSkills(props) {
             <meshBasicMaterial color="#222222" />
           </RoundedBox>
             <Text position={[-3.1,3.5,1]}>Three.js</Text>
-            <Text fontSize={0.55} position={[-0.3,2,1]}> {"2 Years of Experience with React"}</Text>
-            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
-              {"Proficient in Flexbox, Media Queries, "}
+            <Text fontSize={0.55} position={[-0.5,2,1]}> {"4 Years of Experience with Three.js"}</Text>
+            <Text fontSize={0.55} position={[-0.65, 0.7, 1]} color="#cccccc">
+            {"Proficient in WebGL and Shaders"}
             </Text>
-            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
-              {"Transitions, and Animations"}
+            <Text fontSize={0.55} position={[-0.2, -0.2, 1]} color="#cccccc">
+            {"Skilled in 3D Modeling & Animations"}
             </Text>
-
-            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
-          {"Skilled in BEM Methodology "}
+            <Text position={[-0.2, -1.4, 1]} fontSize={0.55} color="#cccccc">
+            {"Experience with Scene Management"}
         </Text>
-        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
-          {"and Responsive Design "}
+        <Text
+            onPointerOver={handleCertificateHover}
+            onPointerOut={handleCertificateOut}
+            onClick={handleClick}
+            position={[-0.5, -3.2, 1]}
+            fontSize={certificatehovered ? 0.65 : 0.55} // Increase size on hover
+            color={certificatehovered ? "#ffffff" : "#cccccc"} // Change color on hover
+          >
+            {"Certificate"}
         </Text>
           </mesh>
         </group>
@@ -209,21 +222,20 @@ export default function RoomSkills(props) {
           <RoundedBox args={[10, 10, 0.5]} radius={0.5} smoothness={4}>
             <meshBasicMaterial color="#222222" />
           </RoundedBox>
-            <Text position={[-3.1,3.5,1]}>HTML</Text>
-            <Text fontSize={0.55} position={[-0.3,2,1]}> {"2 Years of Experience with React"}</Text>
-            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
-              {"Proficient in Flexbox, Media Queries, "}
+            <Text position={[-3.3,3.5,1]}>HTML</Text>
+            <Text fontSize={0.55} position={[-0.7,2,1]}> {"4 Years of Experience with HTML"}</Text>
+            <Text fontSize={0.55} position={[-0.2, 0.7, 1]} color="#cccccc">
+            {"Expert in Semantic HTML and Forms"}
             </Text>
-            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
-              {"Transitions, and Animations"}
+            <Text fontSize={0.55} position={[-0.9, -0.2, 1]} color="#cccccc">
+              {"Responsive Tables and Layouts"}
             </Text>
-
-            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
-          {"Skilled in BEM Methodology "}
-        </Text>
-        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
-          {"and Responsive Design "}
-        </Text>
+            <Text position={[-1.5, -1.4, 1]} fontSize={0.55} color="#cccccc">
+              {"Accessibility Best Practices"}
+            </Text>
+            <Text position={[-1.1, -2.3, 1]} fontSize={0.55} color="#cccccc">
+              {"SEO Optimization Techniques"}
+            </Text>
           </mesh>
         </group>
       )}
@@ -257,18 +269,18 @@ export default function RoomSkills(props) {
             <meshBasicMaterial color="#222222" />
           </RoundedBox>
             <Text position={[-3.1,3.5,1]}>SASS</Text>
-            <Text fontSize={0.55} position={[-0.3,2,1]}> {"2 Years of Experience with React"}</Text>
-            <Text fontSize={0.55} position={[0.4, 0.7, 1]} color="#cccccc">
+            <Text fontSize={0.55} position={[-0.3,2,1]}> {"3+ Years of Experience with SASS"}</Text>
+            <Text fontSize={0.55} position={[0.3, 0.7, 1]} color="#cccccc">
               {"Proficient in Flexbox, Media Queries, "}
             </Text>
-            <Text fontSize={0.55} position={[-0.75, -0.2, 1]} color="#cccccc">
+            <Text fontSize={0.55} position={[-0.85, -0.2, 1]} color="#cccccc">
               {"Transitions, and Animations"}
             </Text>
 
-            <Text position={[-0.7, -1.4, 1]} fontSize={0.55} color="#cccccc">
+            <Text position={[-0.85, -1.4, 1]} fontSize={0.55} color="#cccccc">
           {"Skilled in BEM Methodology "}
         </Text>
-        <Text position={[-1.3, -2.3, 1]} fontSize={0.55} color="#cccccc">
+        <Text position={[-1.5, -2.3, 1]} fontSize={0.55} color="#cccccc">
           {"and Responsive Design "}
         </Text>
           </mesh>

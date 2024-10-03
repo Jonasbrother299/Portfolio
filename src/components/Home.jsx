@@ -52,10 +52,7 @@ const Home = () => {
 
   return (
       <>
-       <AnimatePresence> {/* Wrap the Overlay component */}
-        {state.clicked && <OverlayProjects/>} {/* Only show Overlay when clicked */}
-      </AnimatePresence>
-       
+        {state.clicked && <OverlayProjects/>}
         <OverlayCanvas />
         <CanvasHome />
       </>

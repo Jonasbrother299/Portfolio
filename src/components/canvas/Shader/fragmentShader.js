@@ -1,36 +1,35 @@
 export default /* glsl */ `
-uniform float uTime;
-uniform sampler2D uTexture;
-uniform vec2 uTextureSize;
-uniform vec2 uPlaneSize;
-uniform float uOpacity;
+uniform float u_intensity;
+uniform float u_time;
+uniform vec3 u_colorA; // Color A
+uniform vec3 u_colorB; // Color B
+uniform samplerCube u_reflectionMap; // Cube texture for reflections
 
-varying vec2 vUv;
-varying float vOffsetY;
-
-vec2 getUv(vec2 uv, vec2 textureSize, vec2 planeSize, float scale){
-    vec2 tempUv = uv - vec2(.5);
-
-    float planeAspect = planeSize.x / planeSize.y;
-    float textureAspect = textureSize.x / textureSize.y;
-    if(planeAspect < textureAspect){
-        tempUv = tempUv * vec2(planeAspect / textureAspect, 1.) * .5 * scale;
-    }else{
-        tempUv = tempUv * vec2(1, textureAspect / planeAspect) * .5 * scale;
-    }
-
-    tempUv += .5;
-
-    return tempUv;
-}
+varying vec3 vNormal; // Varying normal from vertex shader
+varying vec3 vPosition; // Varying position from vertex shader
 
 void main() {
-    float scale = 1.5; // Adjust this value to scale the texture
-    vec2 newUv = getUv(vUv, uTextureSize, uPlaneSize, scale);
+  // Normalize the normal and calculate the reflection vector
+  vec3 normal = normalize(vNormal);
+  vec3 reflection = reflect(normalize(vPosition - cameraPosition), normal);
 
-    vec4 color = texture2D(uTexture, newUv);
-    color.a = uOpacity;
+  // Sample the cube texture for the reflection color
+  vec3 colorFromReflectionMap = textureCube(u_reflectionMap, reflection).rgb;
 
-    gl_FragColor = color;
+  // Calculate the distortion factor based on position and intensity
+  float distort = 2.0 * vPosition.z * u_intensity;
+
+  // Interpolate between the two colors based on the distort value
+  vec3 color = mix(u_colorA, u_colorB, 1.0 - distort);
+
+  // Combine reflection color with the base color
+  color += colorFromReflectionMap;
+
+  // Apply an emissive effect by increasing the brightness
+  // This ensures the final color can glow
+  color = color * u_intensity; // Scale the color by intensity
+
+  // Output the final color with full opacity
+  gl_FragColor = vec4(color, 1.0);
 }
 `;

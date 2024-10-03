@@ -1,4 +1,4 @@
-import { Suspense} from "react";
+import { Suspense, useEffect, useState} from "react";
 import { Canvas, useFrame} from "@react-three/fiber";
 import { Preload } from "@react-three/drei/core/Preload";
 import { ScrollControls } from "@react-three/drei/web/ScrollControls";
@@ -18,12 +18,22 @@ import stateflyThrough from "../../../flythrough/stateflyThrough.json"
 import studio from "@theatre/studio"
 import extension from "@theatre/r3f/dist/extension"
 
-// studio.extend(extension)
-// studio.initialize()
+studio.extend(extension)
+studio.initialize()
 
 const CanvasHome = () => {
-    const sheet = getProject("fly through", { state: stateflyThrough }).sheet("Scene")
-  
+    const sheet = getProject("fly through", { 
+      // state: stateflyThrough 
+    }).sheet("Scene")
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false); // Set loading to false after a delay
+    }, 5000); // Adjust duration as needed
+
+    return () => clearTimeout(timer); // Clean up the timer on unmount
+  }, []);
     return (
       <>
         <Canvas
@@ -39,13 +49,14 @@ const CanvasHome = () => {
             preserveDrawingBuffer: true,
           }}
         >
-          <Suspense fallback={<Loader />}>
+
+    <Suspense fallback={<Loader loading={loading} />}>
             <Smoke/>
             <CameraControll/>
               <EnvironmentLoader/>
                 <ambientLight intensity={2}/>
                 {/* <OrbitControls></OrbitControls> */}
-                <ScrollControls pages={5} damping={0.5}>
+                <ScrollControls pages={1} damping={0.7} maxSpeed={0.1} distance={1.5}>
                   <SheetProvider sheet={sheet}>  
                     <Scene/>
                     <AnimatedText/>
