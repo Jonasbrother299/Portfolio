@@ -3,8 +3,8 @@ import { useFrame } from "@react-three/fiber";
 import { Color } from "three/src/math/Color.js";
 import {  MathUtils } from "three/src/math/MathUtils.js";
 
-import vertexShader from "../shader/vertex.js";
-import fragmentShader from "../shader/fragmentShader.js";
+import vertexShader from "./vertex.js";
+import fragmentShader from "./fragmentShader.js";
 
 export default function MovingBall() {
 
